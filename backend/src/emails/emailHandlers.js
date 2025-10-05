@@ -4,7 +4,7 @@ import { createWelcomeEmailTemplate } from "./emailsTemplates.js";
 export const sendWelcomeEmail = async (email, name, clientURL) => {
   const { data, error } = await resendClient.emails.send({
     from: `${sender.name} <${sender.email}>`,
-    to: email,
+    to: [email],
     subject: "Welcome to Talkify!",
     html: createWelcomeEmailTemplate(name, clientURL),
   });
