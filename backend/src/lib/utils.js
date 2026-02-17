@@ -1,6 +1,9 @@
 import jwt from "jsonwebtoken";
 import { ENV } from "./env.js";
 
+const isProduction = ENV.NODE_ENV === "production";
+
+
 export const generateToken = (userId, res) => {
   const { JWT_SECRET } = ENV;
   if (!JWT_SECRET) {
