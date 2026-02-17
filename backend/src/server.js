@@ -21,7 +21,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
 // make ready for deployment
-if (ENV.NODE_ENV === "production") {
+if (ENV.NODE_ENV === "production" && ENV.SERVE_FRONTEND === "true") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
   app.get("*", (_, res) => {
@@ -29,7 +29,14 @@ if (ENV.NODE_ENV === "production") {
   });
 }
 
-server.listen(PORT, () => {
-  console.log("Server running on port " + PORT);
+// server.listen(PORT, () => {
+//   console.log("Server running on port " + PORT);
+//   connectDB();
+// });
+
+
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
   connectDB();
 });
